@@ -6,10 +6,12 @@
 
 // Phrases loaded from JSON file
 let phrases = [];
+let feedbackPhrases = {};
 
 // Game state
 let currentPhraseIndex = 0;
 let currentPhrase = null;
+let previousScore = 0.3; // Starting score
 
 // DOM elements
 const phraseDisplay = document.getElementById('phrase-display');
@@ -35,10 +37,31 @@ async function loadPhrases() {
 }
 
 /**
+ * Load feedback phrases from JSON file
+ */
+async function loadFeedback() {
+    try {
+        const response = await fetch('feedback.json');
+        const data = await response.json();
+        feedbackPhrases = data;
+    } catch (error) {
+        console.error('Error loading feedback:', error);
+        // Fallback to empty object if loading fails
+        feedbackPhrases = {
+            big_increase: [],
+            small_change: [],
+            big_decrease: []
+        };
+    }
+}
+
+/**
  * Initialize the game
  */
 async function init() {
     await loadPhrases();
+    await loadFeedback();
+    updateProgressBar(previousScore); // Set initial progress bar position
     loadNewPhrase();
     setupEventListeners();
 }
@@ -71,10 +94,21 @@ function loadNewPhrase() {
     // Display the phrase
     phraseDisplay.innerHTML = formattedText;
 
-    // Clear input and score
+    // Clear input
     wordInput.value = '';
-    scoreDisplay.textContent = '';
     wordInput.focus();
+
+    // Fade out the score display (if there is content)
+    if (scoreDisplay.textContent.trim() !== '') {
+        scoreDisplay.classList.add('fade-out');
+
+        // After fade completes, clear the score and remove fade class
+        setTimeout(() => {
+            scoreDisplay.textContent = '';
+            scoreDisplay.classList.remove('fade-out');
+            scoreDisplay.style.opacity = '1'; // Reset opacity
+        }, 2000);
+    }
 }
 
 /**
@@ -89,19 +123,25 @@ function handleSubmit() {
         return;
     }
 
-    // Get similarity score
-    const score = calculateScore(userAnswer);
+    // Get score delta (change)
+    const delta = calculateScore(userAnswer);
 
-    // Display the score
-    displayScore(score);
+    // Calculate new score by adding delta to previous score
+    let newScore = previousScore + delta;
+
+    // Clamp score between 0 and 1
+    newScore = Math.max(0, Math.min(1, newScore));
+
+    // Display the score (displayScore handles previousScore update internally)
+    displayScore(newScore);
 
     // Update progress bar
-    updateProgressBar(score);
+    updateProgressBar(newScore);
 
-    // Move to next phrase after a short delay
+    // Move to next phrase after a longer delay (kids need time to read)
     setTimeout(() => {
         moveToNextPhrase();
-    }, 2000);
+    }, 5000);
 }
 
 /**
@@ -139,37 +179,70 @@ function calculateSimpleSimilarity(userAnswer, targetWords) {
 }
 
 /**
- * Calculate similarity score between user answer and correct answer
- * Checks against correct_words and kinda_ok_words lists
+ * Calculate score delta (change) based on user answer
+ * Returns how much to add/subtract from current score
  *
  * @param {string} userAnswer - The word entered by the student
- * @returns {number} Score between 0 and 1 (0 = completely wrong, 1 = perfect match)
+ * @returns {number} Delta to add to current score
  */
 function calculateScore(userAnswer) {
     // Normalize the user answer (lowercase, trim)
     const normalizedAnswer = userAnswer.toLowerCase().trim();
 
-    // Check if it's in correct_words (score = 1.0)
+    // Check if it's in correct_words -> random increase between 0.07 and 0.15
     const correctWords = currentPhrase.correct_words.map(w => w.toLowerCase());
     if (correctWords.includes(normalizedAnswer)) {
-        console.log(`User answer: "${userAnswer}" - CORRECT!`);
-        return 1.0;
+        const delta = 0.07 + Math.random() * 0.08; // Random between 0.07 and 0.15
+        console.log(`User answer: "${userAnswer}" - CORRECT! Delta: +${delta.toFixed(3)}`);
+        return delta;
     }
 
-    // Check if it's in kinda_ok_words (score = 0.7)
+    // Check if it's in kinda_ok_words -> random change between -0.05 and 0.05
     const kindaOkWords = currentPhrase.kinda_ok_words.map(w => w.toLowerCase());
     if (kindaOkWords.includes(normalizedAnswer)) {
-        console.log(`User answer: "${userAnswer}" - KINDA OK`);
-        return 0.7;
+        const delta = -0.05 + Math.random() * 0.10; // Random between -0.05 and 0.05
+        console.log(`User answer: "${userAnswer}" - KINDA OK. Delta: ${delta.toFixed(3)}`);
+        return delta;
     }
 
-    // Not in either list, calculate similarity score
+    // Not in either list, calculate similarity-based delta
     const allTargetWords = [...currentPhrase.correct_words, ...currentPhrase.kinda_ok_words];
-    console.log(currentPhrase);
     const similarityScore = calculateSimpleSimilarity(userAnswer, allTargetWords);
-    console.log(`User answer: "${userAnswer}" - Similarity score: ${similarityScore.toFixed(2)}`);
 
-    return similarityScore;
+    // Convert similarity to delta: can be very negative, but capped at +0.05
+    let delta = similarityScore - 0.4;
+    if (delta > 0.05) {
+        delta = 0.05;
+    }
+
+    console.log(`User answer: "${userAnswer}" - Wrong. Similarity: ${similarityScore.toFixed(2)}, Delta: ${delta.toFixed(3)}`);
+    return delta;
+}
+
+/**
+ * Get a random feedback phrase based on score change
+ *
+ * @param {number} change - Change in score (between -1 and 1)
+ * @returns {string} Random feedback phrase
+ */
+function getFeedbackPhrase(change) {
+    let phraseList = [];
+
+    if (change > 0.10) {
+        phraseList = feedbackPhrases.big_increase || [];
+    } else if (change < -0.10) {
+        phraseList = feedbackPhrases.big_decrease || [];
+    } else {
+        phraseList = feedbackPhrases.small_change || [];
+    }
+
+    // Return random phrase from the list
+    if (phraseList.length > 0) {
+        const randomIndex = Math.floor(Math.random() * phraseList.length);
+        return phraseList[randomIndex];
+    }
+
+    return '';
 }
 
 /**
@@ -178,8 +251,27 @@ function calculateScore(userAnswer) {
  * @param {number} score - Score between 0 and 1
  */
 function displayScore(score) {
-    const percentage = Math.round(score * 100);
-    scoreDisplay.textContent = `Puntuación: ${percentage}%`;
+    const change = score - previousScore;
+
+    // Format the change with + or - sign (using decimals for precision)
+    const changePercent = (change * 100).toFixed(1);
+    let changeText = '';
+    if (change > 0) {
+        changeText = `+${changePercent}%`;
+    } else if (change < 0) {
+        changeText = `${changePercent}%`;
+    } else {
+        changeText = '0.0%';
+    }
+
+    // Get appropriate feedback phrase
+    const feedbackText = getFeedbackPhrase(change);
+
+    // Display score change and feedback
+    scoreDisplay.innerHTML = `Puntuación: ${changeText}<br><small style="font-size: 0.8em;">${feedbackText}</small>`;
+
+    // Update previous score for next time
+    previousScore = score;
 
     // Add animation
     scoreDisplay.style.animation = 'none';

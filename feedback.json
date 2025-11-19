@@ -1,0 +1,22 @@
+{
+    "big_increase":    [
+        "Brillante, casi podrías discutir con el Sombrerero.",
+        "Mi mente está creciendo más rápido que Alicia después de comer un pastel misterioso.",
+        "¡Fantástico! El Gato de Cheshire estaría orgulloso.",
+        "Parece que conozco este mundo mejor que la propia Reina.",
+        "Estoy comenzando a descifrar la lógica del absurdo."
+    ],
+    "small_change": [
+        "Vamos bien, pero aún falta un poco de magia.",
+        "Esa respuesta suena curiosa… pero no del todo correcta.",
+        "Un paso más y estaré del otro lado del espejo.",
+        "Eso tiene sentido… bueno, no tanto."
+    ],
+    "big_decrease": [
+        "Creo que me estoy perdiendo en el laberinto de cartas.",
+        "Eso fue tan malo que hasta el Sombrerero dejó de reír.",
+        "Si sigo así, me van a corregir hasta las flores.",
+        "El Conejo Blanco sabe más la hora que yo.",
+        "Esa respuesta está tan lejos que parece sacada del sueño de otro sueño."
+    ]
+}
