@@ -28,11 +28,6 @@ function generatePrompt() {
         prompt += ideaGeneral + '\n\n';
     }
 
-    if (instrucciones) {
-        prompt += '# Instrucciones\n\n';
-        prompt += instrucciones + '\n\n';
-    }
-
     if (detalles) {
         prompt += '# Detalles\n\n';
         prompt += detalles + '\n\n';
@@ -41,6 +36,11 @@ function generatePrompt() {
     if (ejemplos) {
         prompt += '# Ejemplos\n\n';
         prompt += ejemplos + '\n\n';
+    }
+
+    if (instrucciones) {
+        prompt += '# Instrucciones\n\n';
+        prompt += instrucciones + '\n\n';
     }
 
     // If all sections are empty, show placeholder

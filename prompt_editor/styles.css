@@ -80,6 +80,21 @@ header {
     font-size: 1.8rem;
 }
 
+.instructions-text {
+    background: #e8f4f8;
+    border-left: 4px solid #667eea;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.instructions-text p {
+    margin: 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 .input-section {
     margin-bottom: 25px;
 }
