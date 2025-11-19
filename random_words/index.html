@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Palabras Aleatorias</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎩</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Quicksand&family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="title">Generador de Palabras Aleatorias</h1>
+            <a href="../index.html" class="back-link">← Volver al juego</a>
+        </header>
+
+        <!-- Main content: Split layout -->
+        <div class="split-container">
+            <!-- Left side: Word lists -->
+            <div class="left-panel">
+                <h2>Listas de Palabras</h2>
+
+                <button id="random-btn" class="random-btn">🎲 Elige 4</button>
+
+                <div class="word-category">
+                    <h3>Tamaño</h3>
+                    <div class="word-list" id="tamaño-list">
+                        <!-- Words will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="word-category">
+                    <h3>Personalidad</h3>
+                    <div class="word-list" id="personalidad-list">
+                        <!-- Words will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="word-category">
+                    <h3>Apariencia</h3>
+                    <div class="word-list" id="apariencia-list">
+                        <!-- Words will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="word-category">
+                    <h3>Rareza Especial</h3>
+                    <div class="word-list" id="rareza-list">
+                        <!-- Words will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Selected words -->
+            <div class="right-panel">
+                <h2>Palabras Seleccionadas</h2>
+                <div class="selected-words" id="selected-words">
+                    <p class="placeholder">Haz clic en "Elige 4" para generar palabras aleatorias</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
