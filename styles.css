@@ -1,0 +1,269 @@
+/*
+ * Alice in Wonderland themed word prediction game
+ * Playful, surrealist-inspired design for 5th-6th grade classroom use
+ */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Animated background pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.container {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-family: 'Modak', cursive;
+    font-size: 3rem;
+    color: #764ba2;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 0px rgba(102, 126, 234, 0.3);
+    letter-spacing: 2px;
+}
+
+.instructions {
+    font-size: 1.3rem;
+    color: #555;
+    font-weight: 600;
+}
+
+/* Main content area */
+main {
+    margin-bottom: 40px;
+}
+
+.phrase-container {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phrase {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hidden word styling */
+.hidden-word {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    border-bottom: 4px dashed white;
+    padding: 0 20px;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Input area */
+.input-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.word-input {
+    flex: 1;
+    padding: 20px 25px;
+    font-size: 1.5rem;
+    border: 3px solid #667eea;
+    border-radius: 15px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.word-input:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+    transform: scale(1.02);
+}
+
+.submit-btn {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
+}
+
+/* Score display */
+.score-display {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #764ba2;
+    min-height: 40px;
+    padding: 10px;
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Progress slider section */
+footer {
+    margin-top: 40px;
+}
+
+.progress-container {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 20px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.progress-bar {
+    position: relative;
+    height: 40px;
+    background: linear-gradient(to right, #ff6b6b 0%, #feca57 50%, #48dbfb 75%, #1dd1a1 100%);
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-indicator {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .instructions {
+        font-size: 1.1rem;
+    }
+
+    .phrase {
+        font-size: 1.5rem;
+    }
+
+    .input-container {
+        flex-direction: column;
+    }
+
+    .word-input,
+    .submit-btn {
+        font-size: 1.2rem;
+    }
+
+    .progress-label {
+        font-size: 1rem;
+    }
+}

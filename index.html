@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinar la Palabra - Alicia en el País de las Maravillas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header section -->
+        <header>
+            <h1 class="title">🐰 Adivina la Palabra 🎩</h1>
+        </header>
+
+        <!-- Main phrase display area -->
+        <main>
+            <div class="phrase-container">
+                <p class="phrase" id="phrase-display">
+                    <!-- Phrase will be inserted here by JavaScript -->
+                </p>
+            </div>
+
+            <!-- Input area -->
+            <div class="input-container">
+                <input
+                    type="text"
+                    id="word-input"
+                    class="word-input"
+                    placeholder="Escriban aquí..."
+                    autocomplete="off"
+                >
+                <button id="submit-btn" class="submit-btn">ENVIAR</button>
+            </div>
+
+            <!-- Score display -->
+            <div class="score-display" id="score-display">
+                <!-- Score will appear here after submission -->
+            </div>
+        </main>
+
+        <!-- Progress slider at the bottom -->
+        <footer>
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>❌ Muy Lejos</span>
+                    <span>✅ Muy Cerca</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                    <div class="progress-indicator" id="progress-indicator">🎯</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Load JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
