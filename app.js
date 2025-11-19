@@ -17,6 +17,7 @@ let previousScore = 0.3; // Starting score
 const phraseDisplay = document.getElementById('phrase-display');
 const wordInput = document.getElementById('word-input');
 const submitBtn = document.getElementById('submit-btn');
+const nextBtn = document.getElementById('next-btn');
 const scoreDisplay = document.getElementById('score-display');
 const progressIndicator = document.getElementById('progress-indicator');
 const progressFill = document.getElementById('progress-fill');
@@ -73,6 +74,9 @@ function setupEventListeners() {
     // Submit button click
     submitBtn.addEventListener('click', handleSubmit);
 
+    // Next button click
+    nextBtn.addEventListener('click', moveToNextPhrase);
+
     // Enter key in input field
     wordInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -98,15 +102,18 @@ function loadNewPhrase() {
     wordInput.value = '';
     wordInput.focus();
 
-    // Fade out the score display (if there is content)
-    if (scoreDisplay.textContent.trim() !== '') {
-        scoreDisplay.classList.add('fade-out');
+    // Fade out only the feedback text (not the score)
+    const feedbackElement = document.getElementById('feedback-text');
+    if (feedbackElement) {
+        feedbackElement.classList.add('fade-out');
 
-        // After fade completes, clear the score and remove fade class
+        // After fade completes, clear the feedback text
         setTimeout(() => {
-            scoreDisplay.textContent = '';
-            scoreDisplay.classList.remove('fade-out');
-            scoreDisplay.style.opacity = '1'; // Reset opacity
+            if (feedbackElement && feedbackElement.parentNode) {
+                feedbackElement.textContent = '';
+                feedbackElement.classList.remove('fade-out');
+                feedbackElement.style.opacity = '1'; // Reset opacity
+            }
         }, 2000);
     }
 }
@@ -137,11 +144,6 @@ function handleSubmit() {
 
     // Update progress bar
     updateProgressBar(newScore);
-
-    // Move to next phrase after a longer delay (kids need time to read)
-    setTimeout(() => {
-        moveToNextPhrase();
-    }, 5000);
 }
 
 /**
@@ -267,13 +269,13 @@ function displayScore(score) {
     // Get appropriate feedback phrase
     const feedbackText = getFeedbackPhrase(change);
 
-    // Display score change and feedback
-    scoreDisplay.innerHTML = `Puntuación: ${changeText}<br><small style="font-size: 0.8em;">${feedbackText}</small>`;
+    // Display score change and feedback (using span for feedback so we can fade it separately)
+    scoreDisplay.innerHTML = `Puntuación: ${changeText}<br><span id="feedback-text" style="font-size: 0.8em;">${feedbackText}</span>`;
 
     // Update previous score for next time
     previousScore = score;
 
-    // Add animation
+    // Add animation to score display
     scoreDisplay.style.animation = 'none';
     setTimeout(() => {
         scoreDisplay.style.animation = 'pulse 0.5s ease';
