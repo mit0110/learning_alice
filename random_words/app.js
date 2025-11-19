@@ -36,14 +36,14 @@ const wordCategories = {
         "ojos gigantes"
     ],
 
-    habilidad: [
-        "hablar objetos",
-        "invocar canciones",
-        "cambiar clima",
-        "teleportarse",
-        "leer pensamientos",
-        "hacer clones",
-        "convertir palabras en objetos"
+    rareza: [
+        "habla en rimas",
+        "se ríe en momentos serios",
+        "solo responde preguntas con acertijos",
+        "cambia de idioma al azar",
+        "olvida quién es cada 5 minutos",
+        "cree que todos son insectos",
+        "solo come cosas invisibles"
     ]
 };
 
