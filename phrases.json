@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Alicia persigue a un conejo blanco que lleva un reloj de _____",
+    "correct_words": ["bolsillo", "cadena", "oro"],
+    "kinda_ok_words": ["reloj", "tiempo", "mano", "antiguo", "viejo"]
+  },
+  {
+    "question": "Alicia cae por un _____ muy largo hacia otro mundo.",
+    "correct_words": ["agujero", "túnel", "pozo"],
+    "kinda_ok_words": ["hoyo", "abismo", "caída", "entrada", "vacío"]
+  },
+  {
+    "question": "Al llegar, Alicia encuentra una mesa con una _____ muy pequeña.",
+    "correct_words": ["llave", "puerta", "cerradura"],
+    "kinda_ok_words": ["objeto", "metal", "cosa", "manija", "oro"]
+  },
+  {
+    "question": "Para entrar, Alicia necesita hacer su cuerpo más _____",
+    "correct_words": ["pequeño", "chico", "diminuto"],
+    "kinda_ok_words": ["bajo", "delgado", "ligero", "miniatura", "estrecho"]
+  },
+  {
+    "question": "Cuando bebe la botella con la etiqueta 'Bébeme', Alicia comienza a _____",
+    "correct_words": ["encogerse", "achicarse", "disminuir"],
+    "kinda_ok_words": ["bajar", "reducirse", "transformarse", "cambiar", "reducir"]
+  },
+  {
+    "question": "El Gato de Cheshire es conocido por su gran _____",
+    "correct_words": ["sonrisa", "risa", "mueca"],
+    "kinda_ok_words": ["boca", "dientes", "felicidad", "gesto", "cara"]
+  },
+  {
+    "question": "El gato desaparece y solo queda su _____ en el aire.",
+    "correct_words": ["sonrisa", "rastro", "forma"],
+    "kinda_ok_words": ["cara", "sombra", "huella", "figura", "silencio"]
+  },
+  {
+    "question": "En la fiesta del Té, el Sombrerero está tratando de arreglar un _____",
+    "correct_words": ["reloj", "tiempo", "engranaje"],
+    "kinda_ok_words": ["máquina", "mecanismo", "objeto", "mesa", "taza"]
+  },
+  {
+    "question": "El Sombrerero loco dice que el tiempo está _____",
+    "correct_words": ["detenido", "atrapado", "quieto"],
+    "kinda_ok_words": ["raro", "lento", "confuso", "extraño", "parado"]
+  },
+  {
+    "question": "La Liebre de Marzo insiste en que es siempre _____",
+    "correct_words": ["té", "hora", "tarde"],
+    "kinda_ok_words": ["tiempo", "momento", "fiesta", "reunión", "mesa"]
+  },
+  {
+    "question": "Las flores del jardín pueden _____",
+    "correct_words": ["hablar", "cantar", "responder"],
+    "kinda_ok_words": ["sonar", "susurrar", "emitir", "decir", "expresar"]
+  },
+  {
+    "question": "La oruga azul fuma una _____",
+    "correct_words": ["pipa", "hookah", "narguile"],
+    "kinda_ok_words": ["tubo", "instrumento", "humo", "cachimba", "aparato"]
+  },
+  {
+    "question": "La oruga le pregunta a Alicia: '¿Quién _____ tú?'",
+    "correct_words": ["eres", "crees", "piensas"],
+    "kinda_ok_words": ["sos", "tú", "piensas ser", "resultas", "dices"]
+  },
+  {
+    "question": "Las cartas pintan rosas _____ para la Reina.",
+    "correct_words": ["rojas", "carmín", "escarlata"],
+    "kinda_ok_words": ["coloradas", "pintadas", "vivas", "brillantes", "fuertes"]
+  },
+  {
+    "question": "La Reina de Corazones grita: '¡Que le _____ la cabeza!'",
+    "correct_words": ["corten", "quiten", "arranquen"],
+    "kinda_ok_words": ["tomen", "rompan", "ataquen", "castiguen", "lastimen"]
+  },
+  {
+    "question": "El juicio que ocurre en el castillo es completamente _____",
+    "correct_words": ["absurdo", "ridículo", "caótico"],
+    "kinda_ok_words": ["raro", "extraño", "confuso", "ilógico", "extraño"]
+  },
+  {
+    "question": "Alicia empieza a creer que todo lo que ocurre allí no es _____",
+    "correct_words": ["real", "verdad", "posible"],
+    "kinda_ok_words": ["normal", "cierto", "lógico", "común", "cotidiano"]
+  },
+  {
+    "question": "Cuando crece demasiado en la sala, su pie empuja una _____",
+    "correct_words": ["mesa", "silla", "puerta"],
+    "kinda_ok_words": ["cosa", "objeto", "mueble", "copa", "jarrón"]
+  },
+  {
+    "question": "El mundo de Alicia está lleno de reglas que cambian sin _____",
+    "correct_words": ["sentido", "razón", "lógica"],
+    "kinda_ok_words": ["orden", "explicación", "control", "coherencia", "patrón"]
+  },
+  {
+    "question": "Al final, Alicia descubre que todo había sido un _____",
+    "correct_words": ["sueño", "imaginación", "fantasía"],
+    "kinda_ok_words": ["historia", "cuento", "visión", "aventura", "ilusión"]
+  }
+]

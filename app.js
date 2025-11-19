@@ -75,9 +75,6 @@ function loadNewPhrase() {
     wordInput.value = '';
     scoreDisplay.textContent = '';
     wordInput.focus();
-
-    // Reset progress indicator to start position
-    updateProgressBar(0);
 }
 
 /**
@@ -108,6 +105,40 @@ function handleSubmit() {
 }
 
 /**
+ * Calculate simple similarity between user answer and target words
+ * Uses character overlap and length similarity
+ *
+ * @param {string} userAnswer - The word entered by the student
+ * @param {Array<string>} targetWords - List of words to compare against
+ * @returns {number} Score between 0 and 0.5 (scaled for partial credit)
+ */
+function calculateSimpleSimilarity(userAnswer, targetWords) {
+    let bestScore = 0;
+
+    for (let target of targetWords) {
+        const user = userAnswer.toLowerCase();
+        const targ = target.toLowerCase();
+
+        // Count matching characters
+        const userChars = new Set(user);
+        const targChars = new Set(targ);
+        const overlap = [...userChars].filter(c => targChars.has(c)).length;
+        const maxChars = Math.max(userChars.size, targChars.size);
+        const charScore = maxChars > 0 ? overlap / maxChars : 0;
+
+        // Length similarity (closer to 1 = more similar)
+        const lengthScore = 1 - Math.abs(user.length - targ.length) / Math.max(user.length, targ.length);
+
+        // Average the scores and scale to max 0.5
+        const score = (charScore * 0.6 + lengthScore * 0.4) * 0.5;
+
+        bestScore = Math.max(bestScore, score);
+    }
+
+    return bestScore;
+}
+
+/**
  * Calculate similarity score between user answer and correct answer
  * Checks against correct_words and kinda_ok_words lists
  *
@@ -132,12 +163,13 @@ function calculateScore(userAnswer) {
         return 0.7;
     }
 
-    // Not in either list, return random score for now
-    // TODO: Implement Levenshtein distance or semantic similarity
-    const randomScore = Math.random() * 0.5; // Random between 0 and 0.5
-    console.log(`User answer: "${userAnswer}" - Not in lists, random score: ${randomScore.toFixed(2)}`);
+    // Not in either list, calculate similarity score
+    const allTargetWords = [...currentPhrase.correct_words, ...currentPhrase.kinda_ok_words];
+    console.log(currentPhrase);
+    const similarityScore = calculateSimpleSimilarity(userAnswer, allTargetWords);
+    console.log(`User answer: "${userAnswer}" - Similarity score: ${similarityScore.toFixed(2)}`);
 
-    return randomScore;
+    return similarityScore;
 }
 
 /**
