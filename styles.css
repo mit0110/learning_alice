@@ -143,6 +143,12 @@ main {
     transform: scale(1.02);
 }
 
+.word-input:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .submit-btn,
 .next-btn {
     padding: 20px 40px;
@@ -154,6 +160,13 @@ main {
     cursor: pointer;
     font-family: 'Quicksand', monospace;
     transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.submit-btn:disabled,
+.next-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .submit-btn {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Prompts - LLM</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎩</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Quicksand&family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="editor-container">
+        <!-- Header -->
+        <header>
+            <h1 class="title">Editor de Prompts</h1>
+            <a href="../index.html" class="back-link">← Volver al juego</a>
+        </header>
+
+        <!-- Main content: Split layout -->
+        <div class="split-container">
+            <!-- Left side: Input sections -->
+            <div class="left-panel">
+                <h2>Componentes del Prompt</h2>
+
+                <div class="input-section">
+                    <label for="idea-general">Idea General</label>
+                    <textarea id="idea-general" rows="4" placeholder="Describe la idea principal del prompt..."></textarea>
+                </div>
+
+                <div class="input-section">
+                    <label for="instrucciones">Instrucciones</label>
+                    <textarea id="instrucciones" rows="6">4 oraciones como máximo.</textarea>
+                </div>
+
+                <div class="input-section">
+                    <label for="detalles">Detalles</label>
+                    <textarea id="detalles" rows="6" placeholder="Añade detalles específicos..."></textarea>
+                </div>
+
+                <div class="input-section">
+                    <label for="ejemplos">Ejemplos</label>
+                    <textarea id="ejemplos" rows="8" placeholder="Proporciona ejemplos..."></textarea>
+                </div>
+            </div>
+
+            <!-- Right side: Generated prompt -->
+            <div class="right-panel">
+                <h2>Prompt Generado</h2>
+                <div class="prompt-output" id="prompt-output">
+                    <div class="output-content">
+                        <!-- Generated prompt will appear here -->
+                    </div>
+                </div>
+                <button id="copy-btn" class="copy-btn">📋 Copiar Prompt</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

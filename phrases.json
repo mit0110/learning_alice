@@ -10,13 +10,13 @@
     "kinda_ok_words": ["hoyo", "abismo", "caída", "entrada", "vacío"]
   },
   {
-    "question": "Al llegar, Alicia encuentra una mesa con una _____ muy pequeña.",
+    "question": "Al llegar, Alicia encuentra una puerta con una _____ muy pequeña.",
     "correct_words": ["llave", "puerta", "cerradura"],
     "kinda_ok_words": ["objeto", "metal", "cosa", "manija", "oro"]
   },
   {
     "question": "Para entrar, Alicia necesita hacer su cuerpo más _____",
-    "correct_words": ["pequeño", "chico", "diminuto"],
+    "correct_words": ["pequeño", "chico", "diminuto", "chiquito"],
     "kinda_ok_words": ["bajo", "delgado", "ligero", "miniatura", "estrecho"]
   },
   {

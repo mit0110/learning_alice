@@ -98,8 +98,10 @@ function loadNewPhrase() {
     // Display the phrase
     phraseDisplay.innerHTML = formattedText;
 
-    // Clear input
+    // Clear input and re-enable it along with submit button
     wordInput.value = '';
+    wordInput.disabled = false;
+    submitBtn.disabled = false;
     wordInput.focus();
 
     // Fade out only the feedback text (not the score)
@@ -129,6 +131,10 @@ function handleSubmit() {
         scoreDisplay.textContent = '¡Por favor escriban una palabra!';
         return;
     }
+
+    // Disable input and submit button to prevent double submission
+    wordInput.disabled = true;
+    submitBtn.disabled = true;
 
     // Get score delta (change)
     const delta = calculateScore(userAnswer);
